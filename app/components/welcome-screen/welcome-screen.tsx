@@ -7,7 +7,7 @@ export default function WelcomeScreen() {
         <h1>Please sign in with the nav bar</h1>
       </SignedOut>
       <SignedIn>
-        <h1>Welcome to Market Saver</h1>
+        <h1>Welcome to Market Saver!</h1>
       </SignedIn>
     </div>
   );
