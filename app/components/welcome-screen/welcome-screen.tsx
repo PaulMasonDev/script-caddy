@@ -2,13 +2,17 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 export default function WelcomeScreen() {
   return (
-    <div className="flex justify-center text-4xl">
+    <div className="flex justify-center text-4xl" data-testid="welcome-screen">
       <SignedOut>
-        <h1>Please sign in with the nav bar</h1>
+        <Landing headingText="Please sign in above" />
       </SignedOut>
       <SignedIn>
-        <h1>Welcome to Market Saver!</h1>
+        <Landing headingText="Welcome to Market Saver!" />
       </SignedIn>
     </div>
   );
 }
+
+const Landing = ({ headingText }: { headingText: string }) => {
+  return <h1>{headingText}</h1>;
+};

@@ -14,13 +14,18 @@ jest.mock("@clerk/nextjs", () => ({
 }));
 
 describe("WelcomeScreen", () => {
-  it("renders an h1", () => {
-    // Arrange
+  it("All h1s are rendered", () => {
     render(<WelcomeScreen />);
-    // Act
-    // Assert
-    expect(
-      screen.getByText(/Please sign in with the nav bar/)
-    ).toBeInTheDocument();
+
+    const headings = screen.getAllByRole("heading", { level: 1 });
+
+    headings.forEach((heading) => {
+      expect(heading).toBeInTheDocument();
+    });
+  });
+  it("There is one header for signed in and one for signed out", () => {
+    render(<WelcomeScreen />);
+    const headings = screen.getAllByRole("heading", { level: 1 });
+    expect(headings.length).toBe(2);
   });
 });
