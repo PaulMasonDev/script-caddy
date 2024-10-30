@@ -27,6 +27,19 @@ export const users = createTable("user", {
     .notNull(),
   updatedAt: timestamp("updatedAt", { withTimezone: true }),
 });
+
+export const scripts = createTable("script", {
+  id: serial("id").primaryKey(),
+  userId: varchar("user_id", { length: 256 }).notNull(),
+  name: varchar("name", { length: 256 }).notNull(),
+  direction: varchar("description", { length: 1024 }).notNull(),
+  script: varchar("script", { length: 1024 }).notNull(),
+  pixabayUrl: varchar("pixabay_url", { length: 256 }).notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updatedAt", { withTimezone: true }),
+});
 // export const games = createTable("game", {
 //   id: serial("id").primaryKey(),
 //   gameKey: varchar("game_key", { length: 256 }).notNull(),

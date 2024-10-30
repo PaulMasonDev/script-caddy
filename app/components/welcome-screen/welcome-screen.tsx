@@ -1,5 +1,7 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
+import SignedInFlow from "../signed-in-flow/signed-in-flow";
+
 export default function WelcomeScreen() {
   return (
     <div className="flex justify-center text-4xl" data-testid="welcome-screen">
@@ -7,12 +9,12 @@ export default function WelcomeScreen() {
         <Landing headingText="Please sign in above" />
       </SignedOut>
       <SignedIn>
-        <Landing headingText="Welcome to Script Caddy!" />
+        <SignedInFlow />
       </SignedIn>
     </div>
   );
 }
 
-const Landing = ({ headingText }: { headingText: string }) => {
+export const Landing = ({ headingText }: { headingText: string }) => {
   return <h1>{headingText}</h1>;
 };
