@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
       <h1 className="text-2xl font-semibold">Script Caddy</h1>
-      <p>&copy; 2024 Paul Mason</p>
+      <p>&copy; 2024 Paul Mason |</p>
       <nav>
         <ul className="flex gap-4">
           <li>
