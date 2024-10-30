@@ -16,8 +16,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Market Saver",
-  description: "Saving $$$ on your grocery bill",
+  title: "Script Caddy",
+  description: "Generating Scripts...since 2024",
 };
 
 export default function RootLayout({
@@ -38,4 +38,3 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
-

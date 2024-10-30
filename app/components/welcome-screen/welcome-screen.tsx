@@ -7,7 +7,7 @@ export default function WelcomeScreen() {
         <Landing headingText="Please sign in above" />
       </SignedOut>
       <SignedIn>
-        <Landing headingText="Welcome to Market Saver!" />
+        <Landing headingText="Welcome to Script Caddy!" />
       </SignedIn>
     </div>
   );

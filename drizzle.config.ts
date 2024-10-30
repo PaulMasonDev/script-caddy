@@ -6,5 +6,5 @@ export default {
   dbCredentials: {
     url: process.env.POSTGRES_URL,
   },
-  tablesFilter: ["market-saver_*"],
+  tablesFilter: ["script-caddy_*"],
 } as Config;

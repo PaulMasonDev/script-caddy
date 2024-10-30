@@ -16,7 +16,7 @@ import {
  *
  * @see https://orm.drizzle.team/docs/goodies#multi-project-schema
  */
-export const createTable = pgTableCreator((name) => `market-saver_${name}`);
+export const createTable = pgTableCreator((name) => `script-caddy_${name}`);
 
 export const users = createTable("user", {
   id: serial("id").primaryKey(),

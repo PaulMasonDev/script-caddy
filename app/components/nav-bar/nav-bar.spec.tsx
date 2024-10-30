@@ -13,7 +13,7 @@ jest.mock("@clerk/nextjs", () => ({
 describe("NavBar", () => {
   it("renders the header with the correct text", () => {
     render(<NavBar />);
-    expect(screen.getByText("Market Saver")).toBeInTheDocument();
+    expect(screen.getByText("Script Caddy")).toBeInTheDocument();
   });
 
   it("renders SignInButton when signed out", () => {
