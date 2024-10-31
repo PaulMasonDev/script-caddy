@@ -7,9 +7,11 @@ import ScriptNumber from "../components/select-types/script-number";
 
 export default function CreateScript({
   isAvailable,
+  currentScriptNum,
   maxScripts,
 }: {
   isAvailable: boolean;
+  currentScriptNum: number;
   maxScripts: number;
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,7 +45,14 @@ export default function CreateScript({
           />
         </label>
         <SelectTypes setSelectedOptions={setSelectedTypes} />
-        <ScriptNumber setScriptNumber={setScriptNumber} />
+        <ScriptNumber
+          setScriptNumber={setScriptNumber}
+          maxScripts={
+            maxScripts - currentScriptNum < 5
+              ? maxScripts - currentScriptNum
+              : 5
+          }
+        />
         <button
           type="submit"
           className={`px-4 py-2 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75 ${

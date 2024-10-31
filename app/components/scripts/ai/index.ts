@@ -1,5 +1,5 @@
 import { ScriptParams } from "../actions";
-import { createScriptsPrompt, ScriptResponse } from "./prompt";
+import { createScriptsPrompt, ScriptResponse, systemPrompt } from "./prompt";
 
 interface OpenAIResponse {
   choices: Array<{
@@ -23,7 +23,10 @@ export const getScripts = async (
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: createScriptsPrompt(scriptParams) }],
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: createScriptsPrompt(scriptParams) },
+          ],
           temperature: 0.7,
         }),
       }

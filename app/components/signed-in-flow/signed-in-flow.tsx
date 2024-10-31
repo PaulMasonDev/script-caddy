@@ -20,7 +20,11 @@ export default async function SignedInFlow() {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <Landing headingText="Welcome to Script Caddy!" />
-      <CreateScript isAvailable={isCreateAvailable} maxScripts={maxScripts} />
+      <CreateScript
+        isAvailable={isCreateAvailable}
+        currentScriptNum={scriptData.length}
+        maxScripts={maxScripts}
+      />
       <ScriptDisplay maxScripts={maxScripts} />
     </div>
   );
