@@ -1,3 +1,4 @@
+import { ScriptParams } from "../actions";
 import { createScriptsPrompt, ScriptResponse } from "./prompt";
 
 interface OpenAIResponse {
@@ -9,7 +10,7 @@ interface OpenAIResponse {
 }
 
 export const getScripts = async (
-  voiceType: string
+  scriptParams: ScriptParams
 ): Promise<ScriptResponse[]> => {
   try {
     const openAIResponse = await fetch(
@@ -22,7 +23,7 @@ export const getScripts = async (
         },
         body: JSON.stringify({
           model: "gpt-3.5-turbo",
-          messages: [{ role: "user", content: createScriptsPrompt(voiceType) }],
+          messages: [{ role: "user", content: createScriptsPrompt(scriptParams) }],
           temperature: 0.7,
         }),
       }

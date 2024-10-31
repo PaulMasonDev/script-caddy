@@ -11,7 +11,7 @@ export default async function SignedInFlow() {
     throw new Error("You must be logged in to view a script");
   }
 
-  const maxScripts = 5;
+  const maxScripts = 20;
   const scriptData = await db.query.scripts.findMany({
     where: (model, { eq }) => eq(model.userId, userId),
   });
@@ -21,7 +21,7 @@ export default async function SignedInFlow() {
     <div className="flex flex-col justify-center items-center gap-4">
       <Landing headingText="Welcome to Script Caddy!" />
       <CreateScript isAvailable={isCreateAvailable} maxScripts={maxScripts} />
-      <ScriptDisplay />
+      <ScriptDisplay maxScripts={maxScripts} />
     </div>
   );
 }

@@ -6,6 +6,12 @@ import { auth } from "@clerk/nextjs/server";
 import { getScripts } from "../ai";
 import { eq } from "drizzle-orm";
 
+export interface ScriptParams {
+  voiceType: string;
+  scriptTypes: string[];
+  numOfScripts: number;
+}
+
 export const createScript = async (formData: FormData) => {
   const user = auth();
   if (!user || !user.userId) {
@@ -13,11 +19,19 @@ export const createScript = async (formData: FormData) => {
   }
 
   const voiceType = formData.get("voiceType") as string;
+  const scriptTypes = formData.get("scriptTypes") as unknown as string[];
+  const numOfScripts = formData.get("numOfScripts") as string;
 
-  const aiScripts = await getScripts(voiceType);
+  const scriptParams: ScriptParams = {
+    voiceType,
+    scriptTypes: Array.isArray(scriptTypes) ? scriptTypes : [scriptTypes],
+    numOfScripts: +numOfScripts,
+  };
+
+  const aiScripts = await getScripts(scriptParams);
 
   aiScripts.forEach(async (script) => {
-    const newScript = await db
+    await db
       .insert(scripts)
       .values({
         userId: user.userId,

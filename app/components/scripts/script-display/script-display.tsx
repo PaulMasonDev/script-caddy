@@ -2,7 +2,11 @@ import { db } from "@/server/db";
 import { auth } from "@clerk/nextjs/server";
 import DeleteScript from "../delete-script/delete-script";
 
-export default async function ScriptDisplay() {
+export default async function ScriptDisplay({
+  maxScripts,
+}: {
+  maxScripts: number;
+}) {
   const user = auth();
 
   if (!user || !user.userId) {
@@ -14,7 +18,10 @@ export default async function ScriptDisplay() {
   });
 
   return (
-    <>
+    <div>
+      <p>
+        Total Scripts: {scriptData.length} ({maxScripts} max)
+      </p>
       {scriptData.reverse().map((script) => {
         return (
           <div
@@ -38,6 +45,6 @@ export default async function ScriptDisplay() {
           </div>
         );
       })}
-    </>
+    </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { createScript } from "../actions";
+import SelectTypes from "../components/select-types/select-types";
+import ScriptNumber from "../components/select-types/script-number";
 
 export default function CreateScript({
   isAvailable,
@@ -11,11 +13,15 @@ export default function CreateScript({
   maxScripts: number;
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedTypes, setSelectedTypes] = useState<string[]>([]);
+  const [scriptNumber, setScriptNumber] = useState(1);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsSubmitting(true);
     const formData = new FormData(event.currentTarget);
+    formData.append("scriptTypes", JSON.stringify(selectedTypes));
+    formData.append("numOfScripts", scriptNumber.toString());
     await createScript(formData);
     setIsSubmitting(false);
     window.location.reload();
@@ -23,7 +29,6 @@ export default function CreateScript({
 
   return (
     <div className="flex flex-col items-center bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4">CREATE SCRIPT</h1>
       <form onSubmit={handleSubmit}>
         <label>
           <span className="text-lg font-semibold">
@@ -37,6 +42,8 @@ export default function CreateScript({
             defaultValue={"Warm male barritone"}
           />
         </label>
+        <SelectTypes setSelectedOptions={setSelectedTypes} />
+        <ScriptNumber setScriptNumber={setScriptNumber} />
         <button
           type="submit"
           className={`px-4 py-2 font-semibold rounded-lg shadow-md focus:outline-none focus:ring-2 focus:ring-opacity-75 ${
