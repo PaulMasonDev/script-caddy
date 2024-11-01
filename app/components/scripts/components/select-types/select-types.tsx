@@ -27,13 +27,13 @@ export default function SelectTypes({
   return (
     <label className="block mb-4">
       <span className="text-lg font-semibold">
-        Script types (ctrl-click to select multiple) - ALL by default
+        Script types (ctrl-click to select multiple)
       </span>
       <select
         multiple
         className="mt-1 block w-full p-2 border border-gray-300 rounded"
         onChange={handleSelectChange}
-        defaultValue={types}
+        defaultValue={["commercial"]}
       >
         {types.map((type) => (
           <option key={type} value={type}>
