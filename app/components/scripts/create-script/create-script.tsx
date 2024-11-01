@@ -41,7 +41,7 @@ export default function CreateScript({
             name="voiceType"
             className="block w-full mt-1 p-2 border border-gray-300 rounded-md"
             placeholder="Enter voice type"
-            defaultValue={"Warm male barritone"}
+            defaultValue={"Male"}
           />
         </label>
         <SelectTypes setSelectedOptions={setSelectedTypes} />
